@@ -36,26 +36,26 @@ class BookCase extends Component {
 
     render (){
 
-        var Shelves = [];
+        let Shelves = [];
         Shelves = this.UpdateShelves();
         /*console.log('pla pla pla', Shelves);*/
 
         return (
-                <div className="list-books">
-                <div className="list-books-title">
-                <h1>MyReads</h1>
-                </div>
-                <div className="list-books-content">
-                <div>
-                    {Shelves.map( shelf => <BookShelves key= {shelf.name} shelf={shelf}/> )}
-                    
-                </div>
-                </div>
-                <div className="open-search">
-                <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
-                </div>
+            <div className="list-books">
+            <div className="list-books-title">
+            <h1>MyReads</h1>
             </div>
-            )
+            <div className="list-books-content">
+            <div>
+                {Shelves.map( shelf => <BookShelves key= {shelf.name} shelf={shelf} ShelfChange={this.props.ShelfChange}/> )}
+                
+            </div>
+            </div>
+            <div className="open-search">
+            <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
+            </div>
+        </div>
+        )
     }
 }    
         

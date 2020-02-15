@@ -2,6 +2,7 @@ import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import BookCase from './components/BookCase'
+import Search from './components/Search'
 
 class BooksApp extends React.Component {
 
@@ -24,33 +25,32 @@ class BooksApp extends React.Component {
     }));
   }
 
+
+  moveBook = (book, shelf) => {
+    console.log ('r', this.state.books, shelf)
+    BooksAPI.update(book, shelf);
+    console.log ('z', this.state.books, shelf)
+    let updatedBooks = [];
+    updatedBooks = this.state.books.filter(b => b.id !== book.id);
+    console.log('h', this)
+    if (shelf !== 'none') {
+      book.shelf = shelf;
+      updatedBooks = updatedBooks.concat(book);
+    }
+
+    this.setState({
+      books: updatedBooks,
+    });
+  };
+
   render() {
     return (
       <div className="app">
         {this.state.showSearchPage ? (
-          <div className="search-books">
-            <div className="search-books-bar">
-              <button className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</button>
-              <div className="search-books-input-wrapper">
-                {/*
-                  NOTES: The search from BooksAPI is limited to a particular set of search terms.
-                  You can find these search terms here:
-                  https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-
-                  However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-                  you don't find a specific author or title. Every search is limited by search terms.
-                */}
-                <input type="text" placeholder="Search by title or author"/>
-
-              </div>
-            </div>
-            <div className="search-books-results">
-              <ol className="books-grid"></ol>
-            </div>
-          </div>
+          <Search />
         ) : (
           
-          <BookCase books= {this.state.books} />
+          <BookCase books= {this.state.books}  ShelfChange= {this.moveBook}/>
         )}
       </div>
     )

@@ -2,7 +2,6 @@ import React from 'react'
 import BookList from './BookList'
 
 const BookShelves = (props) => {
-    const {books}= props;
 
     return (
         <div className="bookshelf">
@@ -12,7 +11,7 @@ const BookShelves = (props) => {
                     {
                         props.shelf.books.map( book => (
                             <li key= {book.id}>
-                                <BookList book= {book} />
+                                <BookList book= {book} ShelfChange={props.ShelfChange}/>
                             </li>
                         ))    
                     }
