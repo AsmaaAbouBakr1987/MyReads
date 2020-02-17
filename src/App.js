@@ -28,12 +28,9 @@ class BooksApp extends React.Component {
 
 
   moveBook = (book, shelf) => {
-    console.log ('r', this.state.books, shelf)
     BooksAPI.update(book, shelf);
-    console.log ('z', this.state.books, shelf)
     let updatedBooks = [];
     updatedBooks = this.state.books.filter(b => b.id !== book.id);
-    console.log('h', this)
     if (shelf !== 'none') {
       book.shelf = shelf;
       updatedBooks = updatedBooks.concat(book);

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import BookShelves from './BookShelves'
-import Search from './Search'
 import { Link } from 'react-router-dom';
 
 class BookCase extends Component {

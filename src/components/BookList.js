@@ -2,6 +2,7 @@ import React from 'react'
 import ChangeShelf from './ChangeShelf'
 
 const BookList = (props) => {
+    const authors = props.book.authors && props.book.authors.join(' | ');
     
     return(
         
@@ -15,7 +16,7 @@ const BookList = (props) => {
             
             </div>
             <div className="book-title">{props.book.title}</div>
-            <div className="book-authors">{props.book.author}</div>
+            <div className="book-authors">{authors}</div>
         </div>
                       
                       
